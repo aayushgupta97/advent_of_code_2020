@@ -1,3 +1,5 @@
+from helper import printsol
+
 with open("data/input_2.txt", "r") as f:
     raw = f.readlines()
     input_data = [r.replace("\n", "") for r in raw]
@@ -30,6 +32,7 @@ RULES = [
 """
 
 
+@printsol
 def part_1():
     valid_count = 0
     for password in RULES:
@@ -37,21 +40,21 @@ def part_1():
         if letter_count >= password["min"] and letter_count <= password["max"]:
             valid_count += 1
     print(valid_count)
+    return valid_count
 
 
 part_1()
 
-
+@printsol
 def part_2():
     valid_count = 0
     for password in RULES:
         text_split = [*password['text']]
-        print(text_split)
         text_compare = text_split[password["min"]-1] + text_split[password["max"]-1]
-        print(text_compare)
         if text_compare.count(password["letter"]) == 1:
             valid_count += 1
     print(valid_count)
+    return valid_count
 
 
 part_2()
